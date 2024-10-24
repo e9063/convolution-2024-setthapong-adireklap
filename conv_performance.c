@@ -34,12 +34,13 @@ int main(){
     };
     endAt = omp_get_wtime();
     double sequential_time = endAt-startAt;
-    //printf("Total time used (sequential) = %f\n", sequential_time);
+    printf("Total time used (sequential) = %f\n", sequential_time);
     free(R);
     
     //parallel
     R = malloc(sizeof(int)*NR);
     startAt = omp_get_wtime();
+    
     omp_set_num_threads(8);
     #pragma omp parallel for schedule(static)
     for(int i = 0 ; i<NR ; i++){
@@ -51,14 +52,10 @@ int main(){
     };
     endAt = omp_get_wtime();
     double parallel_time = endAt-startAt;
-    //printf("Total time used (parallel) = %f\n", parallel_time);
+    printf("Total time used (parallel) = %f\n", parallel_time);
 
     double speed_up = sequential_time/parallel_time;
-    //printf("Speed up = %f\n", speed_up);
-
-    for(int i = 0 ; i<NR ; i++){
-        printf("%d\n", R[i]);
-    }
+    printf("Speed up = %f\n", speed_up);
 
     // ---- free memory ----
     free(F);
