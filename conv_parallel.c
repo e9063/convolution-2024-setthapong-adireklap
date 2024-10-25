@@ -12,12 +12,18 @@ int main(){
     for(int i = 0; i < NA; i++){
         scanf("%d", &A[i]);
     }
-    for(int i = NF-1; i >= 0; i--){
+    for(int i = 0; i < NF; i++){
         scanf("%d", &F[i]);
     }
     // ---- end input and malloc----
 
     // implement here
+
+    int *FF = malloc(sizeof(int) * NF);
+    for(int i = 0; i < NF; i++){
+        FF[i] = F[NF-1-i];
+    }
+
     int NR = NA-NF+1;
     int *R = malloc(sizeof(int)*NR);
     
@@ -28,7 +34,7 @@ int main(){
     for(int i = 0 ; i<NR ; i++){
         int tmp = 0;
         for(int j = 0 ; j<NF ; j++){
-            tmp += A[i+j] * F[j];
+            tmp += A[i+j] * FF[j];
         }
         R[i] = tmp;
     };
@@ -39,6 +45,7 @@ int main(){
 
     // ---- free memory ----
     free(F);
+    free(FF);
     free(A);
     free(R);
     // ---- end free ----

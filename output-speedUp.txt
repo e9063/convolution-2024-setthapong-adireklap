@@ -1,0 +1,3 @@
+Total time used (sequential) = 16.300000
+Total time used (parallel) = 2.632000
+Speed up = 6.193009
